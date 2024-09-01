@@ -54,7 +54,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
     )
 
-    # Добавляем обратно поля для групп и разрешений с корректным related_name
     groups = models.ManyToManyField(
         Group,
         related_name='custom_user_groups',
@@ -69,7 +68,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username", "first_name", "last_name", "position"]
+    REQUIRED_FIELDS = [
+        "username",
+        "first_name",
+        "last_name",
+        "position",
+    ]
 
     objects = UserManager()
 
